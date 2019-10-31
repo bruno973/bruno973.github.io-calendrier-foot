@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Table Football</title>
+    <link rel="stylesheet" href="css/stylefoot.css">
+    <script src="https://cdn.jsdelivr.net/combine/npm/moment@2.24.0,npm/moment@2.24.0/locale/fr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.24.0/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.24.0/locale/fr.min.js"></script>
+</head>
+<body>
+    <header>
+
+    </header>
+    <section>
+        
+
+
+    </section>
+
+    <script type="text/javascript" language="javascript" src="json/football.json"></script>
+    
+
+    <script>
+        var header = document.querySelector('header');
+        var section = document.querySelector('section');
+        // je passe en variable l'adresse de requete
+        var requestURL = "https://api-football-v1.p.rapidapi.com/v2/fixtures/league/530?timezone=Europe%2FLondon";
+
+        //je lance une nouvelle requete XMLrequest
+
+        var request = new XMLHttpRequest();
+
+        //J'ouvre une requete et je passe la variable GET et l'URL
+        
+        // /!\ /!\ /!\ /!\ à réactiver pour recup json
+
+        // request.open('GET', requestURL);
+        // request.setRequestHeader("x-rapidapi-host", "api-football-v1.p.rapidapi.com");
+        // request.setRequestHeader("x-rapidapi-key", "GSF5Ke6iOLmshcEQHPvlKf6UeY9Op1lA9zwjsnxI6LR8QJEm4s");
+
+        // request.responseType = 'json';
+        // request.send();
+        
+        function telechargerJSON(content, fileName, contentType) {
+            var a = document.createElement("a");
+            var file = new Blob([content], {type: contentType});
+            a.href = URL.createObjectURL(file);
+            a.download = fileName ;
+            a.click();
+        }
+
+        
+
+        
+            
+            
+
+            var dataFoot = foot.api ;
+
+            
+            
+            
+            // telechargerJSON(data, "data2.json", "application/json");
+            
+
+
+
+        // request.onload = function() {
+        //     var superheroes = request.response ;
+        //     populateHeader(superheroes);
+        //     showHeroes(superheroes)
+        // }
+
+        function showMatchs(jsonObj){
+            var match = jsonObj["fixtures"];
+            match.forEach(function(arrayMatch){
+                var articleMatch = document.createElement("article");
+                var E1vsE2 = document.createElement("h2");
+                var logo = document.createElement("img");
+                var logo2 = document.createElement("img");
+                var dateMatch = document.createElement("h3");
+                var stadeMatch = document.createElement("p");
+                var statutMatch = arrayMatch.status;
+
+                E1vsE2.textContent = arrayMatch.homeTeam.team_name + " VS " + arrayMatch.awayTeam.team_name;
+                dateMatch.textContent = moment(arrayMatch.event_date).format('LLLL');
+                stadeMatch.textContent = arrayMatch.venue;
+                logo.setAttribute("src" ,arrayMatch.homeTeam.logo );
+                logo2.setAttribute("src" ,arrayMatch.awayTeam.logo );
+
+                
+
+                if(statutMatch != "Match Finished") {
+                articleMatch.appendChild(E1vsE2);
+                articleMatch.appendChild(logo);
+                articleMatch.appendChild(logo2);
+                articleMatch.appendChild(dateMatch);
+                articleMatch.appendChild(stadeMatch);
+
+                section.appendChild(articleMatch);
+                }
+
+
+                
+                
+
+
+            })
+        }
+
+        showMatchs(dataFoot);
+
+    
+
+
+
+
+
+    </script>
+
+</body>
+</html>
