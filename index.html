@@ -9,6 +9,8 @@
     <script src="https://cdn.jsdelivr.net/combine/npm/moment@2.24.0,npm/moment@2.24.0/locale/fr.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/moment@2.24.0/moment.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/moment@2.24.0/locale/fr.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Black+Ops+One|Carter+One|Jockey+One|Jomolhari|Lilita+One|Oleo+Script&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaina|Knewave|Permanent+Marker|Titan+One&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -80,6 +82,7 @@
                 var articleMatch = document.createElement("article");
                 var E1vsE2 = document.createElement("h2");
                 var logo = document.createElement("img");
+                var VS = document.createElement("em");
                 var logo2 = document.createElement("img");
                 var dateMatch = document.createElement("h3");
                 var stadeMatch = document.createElement("p");
@@ -90,12 +93,14 @@
                 stadeMatch.textContent = arrayMatch.venue;
                 logo.setAttribute("src" ,arrayMatch.homeTeam.logo );
                 logo2.setAttribute("src" ,arrayMatch.awayTeam.logo );
+                VS.textContent = "VS";
 
                 
 
                 if(statutMatch != "Match Finished") {
                 articleMatch.appendChild(E1vsE2);
                 articleMatch.appendChild(logo);
+                articleMatch.appendChild(VS);
                 articleMatch.appendChild(logo2);
                 articleMatch.appendChild(dateMatch);
                 articleMatch.appendChild(stadeMatch);

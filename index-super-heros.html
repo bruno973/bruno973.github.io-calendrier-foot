@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Table super hero</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+
+    </header>
+    <section>
+        
+
+
+    </section>
+
+    <script type="text/javascript" language="javascript" src="json/heroe.json"></script>
+
+    <script>
+        var header = document.querySelector('header');
+        var section = document.querySelector('section');
+        // je passe en variable l'adresse de requete
+        // var requestURL = "json/heroe.json";
+
+        //je lance une nouvelle requete XMLrequest
+
+        // var request = new XMLHttpRequest();
+
+        //J'ouvre une requete et je passe la variable GET et l'URL
+
+        // request.open('GET', requestURL);
+
+        // request.responseType = 'json';
+        // request.send();
+
+        
+            var superheroes = superHeroes;
+            populateHeader(superheroes);
+            showHeroes(superheroes)
+        
+
+        function populateHeader(jsonObj) {
+            var myH1 = document.createElement("h1");
+            myH1.textContent = jsonObj["squadName"];
+            header.appendChild(myH1);
+
+            var paragraphe = document.createElement("p");
+            paragraphe.textContent = jsonObj["homeTown"] + " // " + jsonObj["formed"] ;
+            header.appendChild(paragraphe);
+        }
+
+        function showHeroes(jsonObj) {
+                var heroes = jsonObj["members"];
+
+                heroes.forEach(function(member) {
+                    var monArticle = document.createElement("article");
+                    var monH2 = document.createElement("h2");
+                    var monPara1 = document.createElement("p");
+                    var monPara2 = document.createElement("p");
+                    var monPara3 = document.createElement("p");
+                    var maListe = document.createElement("ul");
+
+                    monH2.textContent = member.name ;
+                    monPara1.textContent = "Identité secrète : " + member.secretIdentity ;
+                    monPara2.textContent = "Son age : " + member.age ;
+                    monPara3.textContent = "Son superpouvoir : ";
+
+                    var superPouvoir = member.powers ;
+                    superPouvoir.forEach(pouvoir => {
+                        var objetListe = document.createElement("li");
+                        objetListe.textContent = pouvoir;
+                        maListe.appendChild(objetListe);
+                    });
+
+                    monArticle.appendChild(monH2);
+                    monArticle.appendChild(monPara1);
+                    monArticle.appendChild(monPara2);
+                    monArticle.appendChild(monPara3);
+                    monArticle.appendChild(maListe);
+
+                    section.appendChild(monArticle);
+
+                });
+
+
+        }
+
+
+
+
+
+    </script>
+
+</body>
+</html>
